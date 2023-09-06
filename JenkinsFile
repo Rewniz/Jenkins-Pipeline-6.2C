@@ -16,13 +16,13 @@ pipeline{
             }
             post{
                 success{
-                    mail to: "rewniz183@gmail.com", //changed from mail to, due to needing to attack log
+                    emailext to: "rewniz183@gmail.com", //changed from mail to, due to needing to attack log
                     subject: "Unit test stage successful",
                     body: "The Unit and integration test stage was successful",
                     attachLog: true
                 }
                 failure{
-                    mail to: "rewniz183@gmail.com",
+                    emailext to: "rewniz183@gmail.com",
                     subject: "Unit test stage failure",
                     body: "The Unit and integration test failed due to an error",
                     attachLog: true                    
@@ -41,13 +41,13 @@ pipeline{
             }
             post{
                 success{
-                    mail to: "rewniz183@gmail.com",
+                    emailext to: "rewniz183@gmail.com",
                     subject: "Security scan stage successful",
                     body: "The security scan stage was successful",
                     attachLog: true
                 }
                 failure{
-                    mail to: "rewniz183@gmail.com",
+                    emailext to: "rewniz183@gmail.com",
                     subject: "Security scan stage failure",
                     body: "The security scan stage failed due to an error",                    
                     attachLog: true
@@ -65,13 +65,13 @@ pipeline{
             }
             post{
                 success{
-                    mail to: "rewniz183@gmail.com",
+                    emailext to: "rewniz183@gmail.com",
                     subject: "Integration test on staging was successful",
                     body: "The integration test on staging was successful",
                     attachLog: true                  
                 }
                 failure{
-                    mail to: "rewniz183@gmail.com",
+                    emailext to: "rewniz183@gmail.com",
                     subject: "Integration test on staging failure",
                     body: "The integration test on staging was a failure due to an error",
                     attachLog: true                                        
