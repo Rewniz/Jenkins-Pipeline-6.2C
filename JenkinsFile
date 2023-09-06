@@ -80,21 +80,21 @@ pipeline{
         }
         stage("Deploy to Production"){
             steps{
-                echo "Deploying to production using the AWS plugin."
-                echo "This will deploy the code to the production, allowing users to receive the new functionality."
+                echo "Deploying to production using the AWS plugin"
+                echo "This will deploy the code to the production, allowing users to receive new functionality"
             }
             post{
                 success{
                     emailext to: "rewniz183@gmail.com", 
-                    subject: "Build Status Email",
-                    body: "All build stages were successful for Task 6.2C Jenkins Pipeline"
+                    subject: "Production deployment successful",
+                    body: "The production deployment was successful",
                     attachLog: true
                 }
                 failure{
                     emailext to: "rewniz183@gmail.com",
-                    subject: "Build Status Email",
-                    body: "Build has failed for Task 6.2C Jenkins Pipeline"
-                    attachLog: true
+                    subject: "Production deployment failure",
+                    body: "The production deployment failed due to an error",
+                    attachLog: true                    
                 }
             }
         }
