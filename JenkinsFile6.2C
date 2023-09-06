@@ -1,0 +1,105 @@
+pipeline{
+    agent any
+    stages{
+        stage("Build"){
+            steps{
+                echo "This stage would implement Apache Maven for automated building."
+                echo "This is used to as a automation build tool that would be used to compile and package the code"
+                echo "Languages include Java, C#, Ruby, etc"
+                echo "Build stage successful"
+            }
+        }
+        stage("Unit and Integration Tests"){
+            steps{
+                echo "This stage would implement JUnit to assist with the programming for developers"
+                echo "JUnit would help to ensure that there is code resuability to increase programming speed"
+            }
+            post{
+                success{
+                    mail to: "rewniz183@gmail.com",
+                    subject: "Unit test stage successful",
+                    body: "The Unit and integration test stage was successful",
+                    attachLog: true
+                }
+                failure{
+                    mail to: "rewniz183@gmail.com",
+                    subject: "Unit test stage failure",
+                    body: "The Unit and integration test failed due to an error",
+                    attachLog: true                    
+                }
+            }
+        }
+        stage("Code Analysis"){
+            steps{
+                echo "This stage would implement the FindBugs tool"
+                echo "This is a analysis tool/plugin for Java language, that searches for errors or potential bugs"
+            }
+        }
+        stage("Security Scan"){
+            steps{
+                echo "This stage would implement OWASP ZAP which finds vulnerabilities in Web Applications"
+            }
+            post{
+                success{
+                    mail to: "rewniz183@gmail.com",
+                    subject: "Security scan stage successful",
+                    body: "The security scan stage was successful",
+                    attachLog: true
+                }
+                failure{
+                    mail to: "rewniz183@gmail.com",
+                    subject: "Security scan stage failure",
+                    body: "The security scan stage failed due to an error",                    
+                    attachLog: true
+                }
+            }
+        }
+        stage("Deploy to staging"){
+            steps{
+                echo "Use Amazon Web Service (AWS) to deploy to staging process."
+            }
+        }
+        stage("Integration Tests on Staging"){
+            steps{
+                echo "Run integration tests on the staging environment to test deployment in a simulated environment."
+            }
+            post{
+                success{
+                    mail to: "rewniz183@gmail.com",
+                    subject: "Integration test on staging was successful",
+                    body: "The integration test on staging was successful",
+                    attachLog: true                  
+                }
+                failure{
+                    mail to: "rewniz183@gmail.com",
+                    subject: "Integration test on staging failure",
+                    body: "The integration test on staging was a failure due to an error",
+                    attachLog: true                                        
+                }
+            }
+        }
+        stage("Deploy to Production"){
+            steps{
+                echo "Deploying to production using the AWS plugin."
+                echo "This will deploy the code to the production, allowing users to receive the new functionality."
+            }
+        }
+
+
+        post{
+            success{
+                mail to: "rewniz183@gmail.com", 
+                subject: "Build Status Email",
+                body: "All build stages were successful for Task 6.2C Jenkins Pipeline"
+                attachLog: true
+            }
+            failure{
+                mail to: "rewniz183@gmail.com",
+                subject: "Build Status Email",
+                body: "Build has failed for Task 6.2C Jenkins Pipeline"
+                attachLog: true
+            }
+        }
+    }
+
+}
